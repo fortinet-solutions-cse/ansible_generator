@@ -214,8 +214,7 @@ fortios_router_static"
 
 pull_request_name="fortios_update_nineth_group"
 
-module_list="
-fortios_spamfilter_profile
+module_list="fortios_spamfilter_profile
 fortios_ssh_filter_profile
 fortios_switch_controller_global
 fortios_switch_controller_lldp_profile
@@ -235,6 +234,30 @@ fortios_system_sdn_connector
 fortios_system_settings
 fortios_system_vdom
 fortios_system_virtual_wan_link"
+
+
+pull_request_name="fortios_update_tenth_group"
+
+module_list="fortios_user_adgrp
+fortios_user_device
+fortios_user_radius
+fortios_user_tacacsplus
+fortios_voip_profile
+fortios_vpn_ipsec_concentrator
+fortios_vpn_ipsec_forticlient
+fortios_vpn_ipsec_manualkey
+fortios_vpn_ipsec_manualkey_interface
+fortios_vpn_ipsec_phase1
+fortios_vpn_ipsec_phase1_interface
+fortios_vpn_ipsec_phase2
+fortios_vpn_ipsec_phase2_interface
+fortios_vpn_ssl_settings
+fortios_vpn_ssl_web_portal
+fortios_waf_profile
+fortios_wanopt_profile
+fortios_wanopt_settings
+fortios_webfilter_content
+fortios_webfilter_content_header"
 
 cd ${ansible_dir}
 git checkout devel
