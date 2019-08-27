@@ -321,7 +321,7 @@
     "fortios_system_wccp": 2.9,
     "fortios_system_zone": 2.9,
     "fortios_user_adgrp": 2.8,
-    "fortios_user_device": 2.8,
+    "fortios_user_device": 2.9,
     "fortios_user_device_access_list": 2.9,
     "fortios_user_device_category": 2.9,
     "fortios_user_device_group": 2.9,
