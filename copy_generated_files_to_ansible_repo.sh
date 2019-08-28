@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# This script finds every module (including unit tests) in this directory 
+# and copies both module and test to ansible repo, creating a branch
+# for each module, adding the files to git and generating a commit 
+
 original_dir=$(pwd)
 ansible_dir=$1
 
