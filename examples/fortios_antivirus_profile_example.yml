@@ -12,8 +12,8 @@
       password: "{{ password }}"
       vdom:  "{{ vdom }}"
       https: "False"
-      state: "present"
       antivirus_profile:
+        state: "present"
         ftp:
             archive_block: "encrypted"
             archive_log: "encrypted"

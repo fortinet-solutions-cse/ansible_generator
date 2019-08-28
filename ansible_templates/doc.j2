@@ -147,9 +147,11 @@ options:
     {%-if "mkey" in schema['schema'] %}
     state: 
         description: 
-            - Indicates whether to create or remove the object.
+            - Indicates whether to create or remove the object.{% if module_version_added == 2.8 %}
+              This attribute was present already in previous version in a deeper level.
+              It has been moved out to this outer level.{%endif%}
         type: str
-        required: true
+        required: {% if module_version_added == 2.8 %}false{% else %}true{% endif %}
         choices:
             - present
             - absent{% if module_version_added == 2.8 %}
@@ -160,7 +162,18 @@ options:
             - {{schema['schema']['help']}}
         default: null
         type: dict
-        suboptions: 
+        suboptions:{% if module_version_added == 2.8 and "mkey" in schema['schema'] %}
+            state: 
+                description: 
+                    - B(Deprecated)
+                    - Starting with Ansible 2.9 we recommend using the top-level 'state' parameter.
+                    - HORIZONTALLINE
+                    - Indicates whether to create or remove the object.
+                type: str
+                required: false
+                choices:
+                    - present
+                    - absent{%endif%}
             {{- doc_attributes(schema['schema']['children'], schema['schema']['mkey'], '')|indent }}
 '''
 

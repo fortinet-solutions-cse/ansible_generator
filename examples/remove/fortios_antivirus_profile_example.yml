@@ -12,6 +12,6 @@
       password: "{{ password }}"
       vdom:  "{{ vdom }}"
       https: "False"
-      state: "absent"
       antivirus_profile:
         name: "Another antivirus profile"
+        state: "absent"

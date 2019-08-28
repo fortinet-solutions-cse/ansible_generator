@@ -66,8 +66,13 @@ def underscore_to_hyphen(data):
 def {{path}}_{{name}}(data, fos):
     vdom = data['vdom']
     {%- if "mkey" in schema['schema'] %}
-    state = data['state']
-    {%-endif%}
+    {% if module_version_added == 2.8 %}if 'state' in data and data['state']:
+        state = data['state']
+    elif 'state' in data['{{path}}_{{name}}'] and data['{{path}}_{{name}}']:
+        state = data['{{path}}_{{name}}']['state']
+    else:
+        state = True{% else %}state = data['state']{% endif %}
+    {%- endif %}
     {{path}}_{{name}}_data = data['{{path}}_{{name}}']
     {% if special_attributes != [] -%}{{path}}_{{name}}_data = flatten_multilists_attributes({{path}}_{{name}}_data)
     {% endif -%}
@@ -189,12 +194,14 @@ def main():
         "vdom": {"required": False, "type": "str", "default": "root"},
         "https": {"required": False, "type": "bool", "default": True},
         "ssl_verify": {"required": False, "type": "bool", "default": True},
-        {%if "mkey" in schema['schema'] %}"state": {"required": True, "type": "str",
+        {%if "mkey" in schema['schema'] %}"state": {"required": {% if module_version_added == 2.8 %}False{% else %}True{% endif %}, "type": "str",
                         "choices": ["present", "absent"]},
         {%endif-%}
         "{{path}}_{{name}}": {
             "required": False, "type": "dict", "default": None,
-            "options": {
+            "options": { {% if module_version_added == 2.8 and "mkey" in schema['schema'] %}
+                "state": {"required": False, "type": "str",
+                          "choices": ["present", "absent"]},{% endif %}
                 {{ code_fields(schema['schema']['children'], schema['schema']['mkey'], '') }}
             }
         }
