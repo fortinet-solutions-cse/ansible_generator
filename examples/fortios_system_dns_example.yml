@@ -12,6 +12,7 @@
       password: "{{ password }}"
       vdom:  "{{ vdom }}"
       https: "False"
+      ssl_verify: False
       system_dns:
         cache_notfound_responses: "disable"
         dns_cache_limit: "5050"

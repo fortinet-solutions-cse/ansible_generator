@@ -12,6 +12,7 @@
       password: "{{ password }}"
       vdom:  "{{ vdom }}"
       https: "False"
+      ssl_verify: False
       authentication_setting:
         captive_portal: "update.microsoft.com"
         captive_portal_type: "fqdn"

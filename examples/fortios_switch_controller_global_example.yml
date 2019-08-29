@@ -12,6 +12,7 @@
       password: "{{ password }}"
       vdom:  "{{ vdom }}"
       https: "False"
+      ssl_verify: False
       switch_controller_global:
         allow_multiple_interfaces: "enable"
         disable_discovery:

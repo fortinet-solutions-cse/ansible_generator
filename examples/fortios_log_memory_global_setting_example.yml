@@ -12,6 +12,7 @@
       password: "{{ password }}"
       vdom:  "{{ vdom }}"
       https: "False"
+      ssl_verify: False
       log_memory_global_setting:
         full_final_warning_threshold: "80"
         full_first_warning_threshold: "50"

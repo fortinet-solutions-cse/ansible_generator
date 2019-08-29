@@ -12,6 +12,7 @@
       password: "{{ password }}"
       vdom:  "{{ vdom }}"
       https: "False"
+      ssl_verify: False
       antivirus_settings:
         default_db: "normal"
         grayware: "enable"

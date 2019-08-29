@@ -12,6 +12,7 @@
       password: "{{ password }}"
       vdom:  "{{ vdom }}"
       https: "False"
+      ssl_verify: False
       log_eventfilter:
         compliance_check: "enable"
         endpoint: "enable"

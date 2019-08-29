@@ -12,6 +12,7 @@
       password: "{{ password }}"
       vdom:  "{{ vdom }}"
       https: "False"
+      ssl_verify: False
       firewall_ipv6_eh_filter:
         auth: "enable"
         dest_opt: "enable"

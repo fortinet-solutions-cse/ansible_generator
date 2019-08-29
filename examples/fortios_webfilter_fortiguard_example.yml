@@ -12,6 +12,7 @@
       password: "{{ password }}"
       vdom:  "{{ vdom }}"
       https: "False"
+      ssl_verify: False
       webfilter_fortiguard:
         cache_mem_percent: "3"
         cache_mode: "ttl"

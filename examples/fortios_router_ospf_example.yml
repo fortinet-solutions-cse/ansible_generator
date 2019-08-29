@@ -12,6 +12,7 @@
       password: "{{ password }}"
       vdom:  "{{ vdom }}"
       https: "False"
+      ssl_verify: False
       state: "present"
       router_access_list:
         comments: "Access List"
@@ -28,6 +29,7 @@
       password: "{{ password }}"
       vdom:  "{{ vdom }}"
       https: "False"
+      ssl_verify: False
       state: "present"
       router_access_list:
         comments: "Access List"
@@ -44,6 +46,7 @@
       password: "{{ password }}"
       vdom:  "{{ vdom }}"
       https: "False"
+      ssl_verify: False
       router_ospf:
         abr_type: "cisco"
         area:

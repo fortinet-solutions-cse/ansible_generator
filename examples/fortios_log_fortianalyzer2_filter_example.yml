@@ -12,6 +12,7 @@
       password: "{{ password }}"
       vdom:  "{{ vdom }}"
       https: "False"
+      ssl_verify: False
       log_fortianalyzer2_filter:
         anomaly: "enable"
         dlp_archive: "enable"

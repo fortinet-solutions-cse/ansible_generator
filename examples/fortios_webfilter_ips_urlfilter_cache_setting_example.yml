@@ -12,6 +12,7 @@
       password: "{{ password }}"
       vdom:  "{{ vdom }}"
       https: "False"
+      ssl_verify: False
       webfilter_ips_urlfilter_cache_setting:
         dns_retry_interval: "3"
         extended_ttl: "4"

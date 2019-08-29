@@ -12,6 +12,7 @@
       password: "{{ password }}"
       vdom:  "{{ vdom }}"
       https: "False"
+      ssl_verify: False
       state: "present"
       firewall_ipmacbinding_table:
         ip: "10.210.9.10"

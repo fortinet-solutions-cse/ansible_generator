@@ -12,6 +12,7 @@
       password: "{{ password }}"
       vdom:  "{{ vdom }}"
       https: "False"
+      ssl_verify: False
       firewall_ipmacbinding_setting:
         bindthroughfw: "enable"
         bindtofw: "enable"

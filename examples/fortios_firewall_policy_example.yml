@@ -6,7 +6,8 @@
       username: admin
       password: ""
       vdom: root
-      https: False
+      https: "False"
+      ssl_verify: False
       state: "present"
       firewall_policy:
         policyid: "2002"

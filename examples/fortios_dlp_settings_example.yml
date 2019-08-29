@@ -12,6 +12,7 @@
       password: "{{ password }}"
       vdom:  "{{ vdom }}"
       https: "False"
+      ssl_verify: False
       dlp_settings:
         cache_mem_percent: "3"
         chunk_size: "3000"

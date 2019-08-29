@@ -12,6 +12,7 @@
       password: "{{ password }}"
       vdom:  "{{ vdom }}"
       https: "False"
+      ssl_verify: False
       ftp_proxy_explicit:
         incoming_ip: "10.210.9.100"
         incoming_port: "8700"

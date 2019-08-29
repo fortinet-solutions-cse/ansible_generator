@@ -12,6 +12,7 @@
       password: "{{ password }}"
       vdom:  "{{ vdom }}"
       https: "False"
+      ssl_verify: False
       endpoint_control_settings:
         download_location: "fortiguard"
         forticlient_avdb_update_interval: "8"

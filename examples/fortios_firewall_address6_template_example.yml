@@ -11,7 +11,7 @@
       username: "{{ username }}"
       password: "{{ password }}"
       vdom:  "{{ vdom }}"
-      https: "False"
+      https: "False"      ssl_verify: False
       state: "present"
       firewall_address6_template:
         name: My IPv6 template

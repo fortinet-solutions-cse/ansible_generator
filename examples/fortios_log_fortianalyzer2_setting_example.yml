@@ -12,6 +12,7 @@
       password: "{{ password }}"
       vdom:  "{{ vdom }}"
       https: "False"
+      ssl_verify: False
       log_fortianalyzer2_setting:
         __change_ip: "0"
         conn_timeout: "5"

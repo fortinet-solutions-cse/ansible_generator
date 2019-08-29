@@ -12,6 +12,7 @@
       password: "{{ password }}"
       vdom:  "{{ vdom }}"
       https: "False"
+      ssl_verify: False
       state: "present"
       endpoint_control_forticlient_registration_sync:
         peer_ip: "10.12.15.190"
