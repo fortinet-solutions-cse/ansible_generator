@@ -1,0 +1,16 @@
+- hosts: fortigates
+  connection: httpapi
+  vars:
+   vdom: "root"
+   ansible_httpapi_use_ssl: no
+   ansible_httpapi_validate_certs: no
+   ansible_httpapi_port: 80
+  tasks:
+  - name: Configure devices.
+    fortios_user_device:
+      vdom:  "{{ vdom }}"
+      state: "absent"
+      user_device:
+        alias: "myuser"
+        mac: "00:01:04:03:ab:c3:32"
+        user: "my_user"

@@ -12,6 +12,7 @@
       password: "{{ password }}"
       vdom:  "{{ vdom }}"
       https: "False"
+      ssl_verify: False
       state: "absent"
       firewall_local_in_policy6:
         policyid: "8"

@@ -12,6 +12,7 @@
       password: "{{ password }}"
       vdom:  "{{ vdom }}"
       https: "False"
+      ssl_verify: False
       state: "absent"
       firewall_central_snat_map:
         policyid: "3"

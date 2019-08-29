@@ -12,6 +12,7 @@
       password: "{{ password }}"
       vdom:  "{{ vdom }}"
       https: "False"
+      ssl_verify: False
       state: "absent"
       webfilter_search_engine:
         name: "default_name_5"

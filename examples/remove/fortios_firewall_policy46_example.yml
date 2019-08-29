@@ -12,6 +12,7 @@
       password: "{{ password }}"
       vdom:  "{{ vdom }}"
       https: "False"
+      ssl_verify: False
       state: "absent"
       firewall_policy46:
         policyid: 1
@@ -22,6 +23,7 @@
       password: "{{ password }}"
       vdom:  "{{ vdom }}"
       https: "False"
+      ssl_verify: False
       state: "absent"
       firewall_vip46:
         name: newVIP46
