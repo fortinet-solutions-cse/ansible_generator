@@ -62,7 +62,31 @@ def underscore_to_hyphen(data):
 
     return data
 
+{% if vi|length > 0 -%}
+def specilchar_to_originalchar(data):
+    specillist = { {%- for k,v in vi |dictsort -%}
+            "{{k}}": "{{v}}"{%- if not loop.last %}, {%endif%}{% endfor -%}
+    }
 
+    for k,v in specillist.items():
+        if v == data:
+            return k
+
+    return data
+{% endif %}
+{%- if vi|length > 0 %}
+def specilchar_to_originalchars(data):
+    if isinstance(data, list):
+        for elem in data:
+            elem = specilchar_to_originalchars(elem)
+    elif isinstance(data, dict):
+        new_data = {}
+        for k, v in data.items():
+            new_data[specilchar_to_originalchar(k)] = specilchar_to_originalchars(v)
+        data = new_data
+
+    return data
+{% endif %}
 def {{path}}_{{name}}(data, fos):
     vdom = data['vdom']
     {%- if "mkey" in schema['schema'] %}
@@ -77,12 +101,19 @@ def {{path}}_{{name}}(data, fos):
     {% if special_attributes != [] -%}{{path}}_{{name}}_data = flatten_multilists_attributes({{path}}_{{name}}_data)
     {% endif -%}
     filtered_data = underscore_to_hyphen(filter_{{path}}_{{name}}_data({{path}}_{{name}}_data))
+    {%- if vi|length > 0 %}
+    converted_data = specilchar_to_originalchars(filtered_data)
+    {%- endif %}
 
     {% if "mkey" in schema['schema'] %}
     if state == "present":
         return fos.set('{{original_path}}',
                        '{{original_name}}',
+                       {% if vi|length > 0 -%}
+                       data=converted_data,
+                       {% else -%}
                        data=filtered_data,
+                       {% endif -%}
                        vdom=vdom)
 
     elif state == "absent":
@@ -93,7 +124,11 @@ def {{path}}_{{name}}(data, fos):
     {%else%}
     return fos.set('{{original_path}}',
                     '{{original_name}}',
+                    {% if vi|length > 0 -%}
+                    data=converted_data,
+                    {% else -%}
                     data=filtered_data,
+                    {% endif -%}
                     vdom=vdom)
     {%endif%}
 

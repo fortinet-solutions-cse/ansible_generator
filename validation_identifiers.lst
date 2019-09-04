@@ -1,0 +1,8 @@
+{
+    "3gpp_plmn":"set_3gpp_plmn",
+    "0, 1 or 2":"set_0, 1 or 2",
+    "802_1X_settings":"set_802_1X_settings",
+    "802_1X":"set_802_1X",
+    "802.1_tlvs":"set_802dot1_tlvs",
+    "802.3_tlvs":"set_802dot3_tlvs"
+}
