@@ -64,31 +64,31 @@ def hyphenToUnderscore(data):
     else:
         return data
 
-def originalchar_to_specilchar(data, validation_identifiers):
-    if (validation_identifiers.has_key(data)):
-        return validation_identifiers[data]
+def invalid_attr_to_valid_attr(data, valid_identifiers):
+    if (valid_identifiers.has_key(data)):
+        return valid_identifiers[data]
     return data
 
-def originalchar_to_specilchars(data, validation_identifiers, validation_identifiers_module):
+def invalid_attr_to_valid_attrs(data, valid_identifiers, valid_identifiers_module):
     if isinstance(data, list):
         for elem in data:
-            elem = originalchar_to_specilchars(elem, validation_identifiers, validation_identifiers_module)
+            elem = invalid_attr_to_valid_attrs(elem, valid_identifiers, valid_identifiers_module)
         return data
     elif isinstance(data, dict):
         for k, v in data.items():
             if not (len(data) == 2 and 'name' in data and 'help' in data) and \
                 k != 'help':
-                data[k] = originalchar_to_specilchars(v, validation_identifiers, validation_identifiers_module)
+                data[k] = invalid_attr_to_valid_attrs(v, valid_identifiers, valid_identifiers_module)
         return data
     elif isinstance(data, str):
-        data1 = originalchar_to_specilchar(data, validation_identifiers)
+        data1 = invalid_attr_to_valid_attr(data, valid_identifiers)
         if data1 != data:
-            validation_identifiers_module[data] = validation_identifiers[data]
+            valid_identifiers_module[data] = valid_identifiers[data]
         return data1
     elif isinstance(data, unicode):
-        data1 = originalchar_to_specilchar(data.encode('utf-8'), validation_identifiers)
+        data1 = invalid_attr_to_valid_attr(data.encode('utf-8'), valid_identifiers)
         if data1 != data:
-            validation_identifiers_module[data] = validation_identifiers[data]
+            valid_identifiers_module[data] = valid_identifiers[data]
         return data1
     else:
         return data
@@ -101,7 +101,7 @@ def removeDefaultCommentsInFGTDoc(str):
     str = re.sub(regex, r"\g<1>", str)
     return str
 
-def renderModule(schema, version, special_attributes, validation_identifiers, version_added):
+def renderModule(schema, version, special_attributes, valid_identifiers, version_added):
 
     # Generate module
     file_loader = FileSystemLoader('ansible_templates')
@@ -110,8 +110,8 @@ def renderModule(schema, version, special_attributes, validation_identifiers, ve
 
     schema['schema'] = hyphenToUnderscore(schema['schema'])
 
-    validation_identifiers_module = {}
-    schema['schema'] = originalchar_to_specilchars(schema['schema'], validation_identifiers, validation_identifiers_module)
+    valid_identifiers_module = {}
+    schema['schema']['children'] = invalid_attr_to_valid_attrs(schema['schema']['children'], valid_identifiers, valid_identifiers_module)
 
     short_description = schema['schema']['help'][:-1] + " in Fortinet's FortiOS and FortiGate."
     description = ""
@@ -135,7 +135,7 @@ def renderModule(schema, version, special_attributes, validation_identifiers, ve
     output += template.render(**locals())
 
     template = env.get_template('code.j2')
-    output += template.render(calculateFullPath=calculateFullPath, vi=validation_identifiers_module, **locals())
+    output += template.render(calculateFullPath=calculateFullPath, vi=valid_identifiers_module, **locals())
 
     dir = 'output/' + version + '/' + path
     if not os.path.exists(dir):
@@ -179,8 +179,8 @@ def jinjaExecutor(number=None):
     special_attributes_file = open('special_attributes.lst').read()
     special_attributes = json.loads(special_attributes_file)
 
-    validation_identifiers_file = open('validation_identifiers.lst').read()
-    validation_identifiers = json.loads(validation_identifiers_file)
+    valid_identifiers_file = open('valid_identifiers.lst').read()
+    valid_identifiers = json.loads(valid_identifiers_file)
     version_added_file = open('version_added.json').read()
     version_added_json = json.loads(version_added_file)
 
@@ -197,7 +197,7 @@ def jinjaExecutor(number=None):
                 renderModule(fgt_sch_results[i],
                              fgt_schema['version'],
                              special_attributes[module_name] if module_name in special_attributes else [],
-                             validation_identifiers,
+                             valid_identifiers,
                              version_added_json)
                 real_counter += 1
     else:
@@ -205,7 +205,7 @@ def jinjaExecutor(number=None):
         renderModule(fgt_sch_results[number],
                      fgt_schema['version'],
                      special_attributes[module_name] if module_name in special_attributes else [],
-                     validation_identifiers,
+                     valid_identifiers,
                      version_added_json)
 
         autopep_files = './output/' + \

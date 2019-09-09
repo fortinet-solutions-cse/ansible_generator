@@ -63,7 +63,7 @@ def underscore_to_hyphen(data):
     return data
 
 {% if vi|length > 0 -%}
-def specilchar_to_originalchar(data):
+def valid_attr_to_invalid_attr(data):
     specillist = { {%- for k,v in vi |dictsort -%}
             "{{k}}": "{{v}}"{%- if not loop.last %}, {%endif%}{% endfor -%}
     }
@@ -73,16 +73,15 @@ def specilchar_to_originalchar(data):
             return k
 
     return data
-{% endif %}
-{%- if vi|length > 0 %}
-def specilchar_to_originalchars(data):
+
+def valid_attr_to_invalid_attrs(data):
     if isinstance(data, list):
         for elem in data:
-            elem = specilchar_to_originalchars(elem)
+            elem = valid_attr_to_invalid_attrs(elem)
     elif isinstance(data, dict):
         new_data = {}
         for k, v in data.items():
-            new_data[specilchar_to_originalchar(k)] = specilchar_to_originalchars(v)
+            new_data[valid_attr_to_invalid_attr(k)] = valid_attr_to_invalid_attrs(v)
         data = new_data
 
     return data
@@ -102,7 +101,7 @@ def {{path}}_{{name}}(data, fos):
     {% endif -%}
     filtered_data = underscore_to_hyphen(filter_{{path}}_{{name}}_data({{path}}_{{name}}_data))
     {%- if vi|length > 0 %}
-    converted_data = specilchar_to_originalchars(filtered_data)
+    converted_data = valid_attr_to_invalid_attrs(filtered_data)
     {%- endif %}
 
     {% if "mkey" in schema['schema'] %}
