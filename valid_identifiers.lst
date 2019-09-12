@@ -1,7 +1,7 @@
 {
-    "3gpp_plmn":"set_3gpp_plmn",
-    "802_1X_settings":"set_802_1X_settings",
+    "3gpp_plmn":"plmn_3gpp",
+    "802_1X_settings":"settings_802_1X",
     "802_1X":"set_802_1X",
-    "802.1_tlvs":"set_802dot1_tlvs",
-    "802.3_tlvs":"set_802dot3_tlvs"
+    "802.1_tlvs":"tlvs_802dot1",
+    "802.3_tlvs":"tlvs_802dot3"
 }
