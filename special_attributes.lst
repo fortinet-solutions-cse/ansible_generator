@@ -5,7 +5,8 @@
                             ["smtp", "tag_type"] ],
     "system_interface":  [ ["allowaccess"],
                            ["ipv6", "ip6_allowaccess"] ],
-    "system_global": [ ["admin_https_ssl_versions"] ],
+    "system_global": [ ["admin_https_ssl_versions"],
+                       ["fgd_alert_subscription"] ],
     "system_snmp_user": [ ["events"],
                           ["notify_hosts"],
                           ["notify_hosts6"] ]                         
