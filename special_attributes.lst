@@ -9,5 +9,6 @@
                        ["fgd_alert_subscription"] ],
     "system_snmp_user": [ ["events"],
                           ["notify_hosts"],
-                          ["notify_hosts6"] ]                         
+                          ["notify_hosts6"] ],
+    "vpn_ipsec_phase2_interface": [ ["proposal"] ]
 }
