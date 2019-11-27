@@ -143,7 +143,8 @@ def fortios_{{path}}(data, fos):
         resp = {{path}}_{{name}}(data, fos)
 
     return not is_successful_status(resp), \
-        resp['status'] == "success", \
+        resp['status'] == "success" and \
+        (resp['revision_changed'] if 'revision_changed' in resp else True), \
         resp
 {% macro getAnsibleType(parent_attrs, attribute) -%}
 {%- if calculateFullPath(parent_attrs, attribute["name"]) in special_attributes_flattened -%}
