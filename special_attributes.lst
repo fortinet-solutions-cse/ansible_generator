@@ -10,5 +10,6 @@
     "system_snmp_user": [ ["events"],
                           ["notify_hosts"],
                           ["notify_hosts6"] ],
-    "vpn_ipsec_phase2_interface": [ ["proposal"] ]
+    "vpn_ipsec_phase2_interface": [ ["proposal"] ],
+    "vpn_ipsec_phase1_interface": [ ["proposal"] ]
 }
