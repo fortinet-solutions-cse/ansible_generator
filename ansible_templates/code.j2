@@ -91,7 +91,7 @@ def {{path}}_{{name}}(data, fos):
     {%- if "mkey" in schema['schema'] %}
     {% if module_version_added == 2.8 %}if 'state' in data and data['state']:
         state = data['state']
-    elif 'state' in data['{{path}}_{{name}}'] and data['{{path}}_{{name}}']:
+    elif 'state' in data['{{path}}_{{name}}'] and data['{{path}}_{{name}}']['state']:
         state = data['{{path}}_{{name}}']['state']
     else:
         state = True{% else %}state = data['state']{% endif %}
