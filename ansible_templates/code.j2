@@ -201,7 +201,7 @@ str
 {%- endmacro %}
 {% macro code_fields(dict, mkey, parent_attrs) -%}
                 {%- for key,value in dict |dictsort -%}
-                "{{value['name']}}": {"required": {% if key == mkey -%}
+                "{{value['name']}}": {"required": {% if key == mkey or ("required" in value and value["required"] == True) -%}
                         True
                     {%- else -%}
                         False
