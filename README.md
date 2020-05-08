@@ -1,5 +1,10 @@
 # Ansible generator
 
+### Please note this work is continued in:
+### https://github.com/fortinet-ansible-dev/fortios-ansible-generator
+### https://github.com/fortinet-ansible-dev/fortimanager-ansible-generator
+
+
 Ansible Generator is an internal tool that is used to help in the process of generating Ansible modules for FortiGate appliances.
 
 It has to be fed with a Json Schema of the FortiGate whose modules are to be generated.
